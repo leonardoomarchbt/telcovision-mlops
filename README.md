@@ -1,5 +1,6 @@
 
-# Laboratorio de Mineria de Datos - 2° Cuatrimestre del 2025
+# Laboratorio de Mineria de Datos
+# 2° Cuatrimestre de 2025
 
 # Proyecto Integrador: MLflow + DVC + Git + DagsHub (End-to-End)
 
