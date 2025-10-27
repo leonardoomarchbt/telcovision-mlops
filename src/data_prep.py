@@ -20,10 +20,10 @@ def load_params(param_file="params.yaml"):
 # --- inicio ---
 params = load_params()
 
-raw_data_path = 'telco_churn.csv'
+raw_data_path = 'data/raw/telco_churn.csv'
 
 # Ruta de salida para los datos procesados
-output_path = 'processed/telco_churn_ok.csv'
+output_path = 'data/processed/telco_churn_ok.csv'
 
 # Crear la carpeta de salida si no existe
 os.makedirs(os.path.dirname(output_path), exist_ok=True)

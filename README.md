@@ -37,9 +37,10 @@ tecnovision-mlops/
 ---
 
 ## 2) EDA
-Abre y ejecuta `notebooks/eda.ipynb` para validar formato y distribución de clases.
+Abre y ejecuta data_prep.py para preparar datos.
 
 ---
+
 
 
 
