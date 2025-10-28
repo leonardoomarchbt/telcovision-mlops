@@ -37,7 +37,12 @@ tecnovision-mlops/
 ---
 
 ## 2) EDA
-Abre y ejecuta data_prep.py para preparar datos.
+Abrir y ejecutar data_prep.py para preparar datos.
+
+---
+
+## 3) Entrenamiento de modelo
+Abrir y ejecutar train.py para entrenar modelo
 
 ---
 
