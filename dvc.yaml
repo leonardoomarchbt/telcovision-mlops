@@ -5,19 +5,9 @@ stages:
   prepare:
     cmd: python src/data_prep.py
     deps:
-      - src/data_prep.py
-      - data/raw/telco_churn.csv # Dependencia del archivo de datos crudos
+    - src/data_prep.py
+    - data/raw/telco_churn.csv
     outs:
-      - data/processed/telco_churn_ok.csv # Salida: dataset (versionado por DVC)
+    - data/processed/telco_churn_ok.csv
   # ETAPA 2: Entrenamiento del Modelo
   # Esta etapa dependerá de las salidas de la etapa 'prepare'
-  train:
-    cmd: python src/train.py --data data/raw/telco_churn.csv --model models/telco_churn_model.pkl --params params.yaml --metrics models/metrics.json
-    deps:
-      - src/train.py
-      - data/processed/telco_churn_ok.csv # Dependencia de la salida de 'prepare'
-      - params.yaml
-    outs:
-      - models/telco_churn_model.pkl
-    metrics:
-      - models/metrics.json

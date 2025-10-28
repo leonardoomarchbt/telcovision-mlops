@@ -17,6 +17,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_matrix
 import matplotlib.pyplot as plt
 
+import pickle
 # ---------- CONFIGURACIÓN DE MLFLOW ----------
 # Local por defecto: file:///<proyecto>/mlruns
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -26,7 +27,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 # --- OPCIONAL: DagsHub MLflow Tracking ---
 # Descomenta estas líneas si deseas registrar en DagsHub (y comenta la URI local de arriba).
 # Requiere setear variables de entorno:
-   # Windows (cmd):  set MLFLOW_TRACKING_USERNAME=<USER>  &  set MLFLOW_TRACKING_PASSWORD=<TOKEN>
+# # set MLFLOW_TRACKING_USERNAME='leonardo.quiroga'
+# # set MLFLOW_TRACKING_PASSWORD="0cef0d7198d17681bdb0a6dd6da2f3a073e88847"
    # PowerShell:     $env:MLFLOW_TRACKING_USERNAME="<USER>"; $env:MLFLOW_TRACKING_PASSWORD="<TOKEN>"
    # Bash:           export MLFLOW_TRACKING_USERNAME=<USER>; export MLFLOW_TRACKING_PASSWORD=<TOKEN>
 mlflow.set_tracking_uri("https://dagshub.com/leonardo.quiroga/telcovision-mlops.mlflow")
@@ -107,7 +109,15 @@ with mlflow.start_run(run_name="Comparativa_Modelos") as parent_run:
             # Log params + metrics + modelo
             mlflow.log_params(params)
             mlflow.log_metrics(metrics)
-            mlflow.sklearn.log_model(pipe, artifact_path="model")
+            # mlflow.sklearn.log_model(pipe, artifact_path="model")
+            model_artifact_path = Path("models") / f"{model_name}_pipeline.pkl"
+            model_artifact_path.parent.mkdir(exist_ok=True, parents=True)
+
+            with open(model_artifact_path, "wb") as f:
+                pickle.dump(pipe, f)
+
+            # Log el modelo serializado como artefacto
+            mlflow.log_artifact(str(model_artifact_path), artifact_path="model")
 
             # Artefactos: matriz de confusión simple
             cm = confusion_matrix(y_test, y_pred)
