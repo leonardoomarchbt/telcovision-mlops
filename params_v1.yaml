@@ -1,0 +1,11 @@
+model:
+    type: LogisticRegression
+    C: 1.0
+    max_iter: 200
+split:
+    test_size: 0.2
+    random_state: 42
+paths:
+    raw_data: ../data/raw/telco_churn.csv
+    model_path: ../models/telco_churn_model.pkl
+    metrics_path: ../model/metrics.json

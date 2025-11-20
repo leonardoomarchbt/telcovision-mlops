@@ -1,11 +1,28 @@
-model:
-    type: LogisticRegression
-    C: 1.0
-    max_iter: 200
-split:
+# params.yaml
+
+# ----------------------------------------------------
+# 1. Parámetros de la Etapa 'train' (Hiperparámetros)
+# ----------------------------------------------------
+train:
+  # Parámetros para el modelo de Regresión Logística
+  lr_params:
+    C: 1.0           # Hiperparámetro de regularización
+    max_iter: 200    # Número de iteraciones
+    solver: 'lbfgs'  # (Añadido: Asumiendo un solver común)
+  
+  # Parámetros para el modelo de Random Forest (basado en tus scripts anteriores)
+  rf_params:
+    n_estimators: 200
+    max_depth: 10
+    random_state: 42
+
+# ----------------------------------------------------
+# 2. Parámetros Generales (Split y Rutas)
+# ----------------------------------------------------
+general:
+  split:
     test_size: 0.2
     random_state: 42
-paths:
+  paths:
+    # Estas rutas suelen ser dependencias para DVC
     raw_data: ../data/raw/telco_churn.csv
-    model_path: ../models/telco_churn_model.pkl
-    metrics_path: ../model/metrics.json
