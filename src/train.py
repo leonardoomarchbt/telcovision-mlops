@@ -159,13 +159,13 @@ with mlflow.start_run(run_name="Comparativa_Modelos") as parent_run:
 
     # 1) RandomForest
     # rf_params = {"n_estimators": 200, "max_depth": 10, "random_state": 42}
-    train_evaluate_log("RandomForest", 
+    rf_metrics = train_evaluate_log("RandomForest", 
                        model_obj=__import__("sklearn.ensemble").ensemble.RandomForestClassifier(**rf_params),
                        params=rf_params)
 
     # 2) LogisticRegression
     # lr_params = {"C": 1.0, "max_iter": 500, "solver": "lbfgs"}
-    train_evaluate_log("LogisticRegression", 
+    lr_metrics = train_evaluate_log("LogisticRegression", 
                        model_obj=__import__("sklearn.linear_model").linear_model.LogisticRegression(**lr_params),
                        params=lr_params)
 					   
