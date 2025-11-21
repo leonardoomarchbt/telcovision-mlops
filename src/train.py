@@ -1,13 +1,10 @@
 \
 import os
 from pathlib import Path
-
 import mlflow
 import mlflow.sklearn
-
 import pandas as pd
 import numpy as np
-
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -16,8 +13,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_matrix
 import matplotlib.pyplot as plt
-
 import pickle
+import yaml
+
+
 # ---------- CONFIGURACIÓN DE MLFLOW ----------
 # Local por defecto: file:///<proyecto>/mlruns
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -36,6 +35,24 @@ mlflow.set_tracking_uri("https://dagshub.com/leonardo.quiroga/telcovision-mlops.
 mlflow.set_experiment("telcovision_Experimentos")
 
 print(f"[INFO] MLflow tracking URI: {mlflow.get_tracking_uri()}")
+
+# ---------- NUEVA SECCIÓN: CARGA DE PARÁMETROS DE params.yaml ----------
+params_path = PROJECT_ROOT / "params.yaml"
+
+if not params_path.exists():
+    raise FileNotFoundError(f"No se encontró {params_path}. Asegúrate de crear el archivo.")
+
+with open(params_path, 'r') as f:
+    config = yaml.safe_load(f)
+
+# Extraer parámetros de entrenamiento y general settings
+try:
+    lr_params = config['train']['lr_params']
+    rf_params = config['train']['rf_params']
+    
+except KeyError as e:
+    raise KeyError(f"Error al leer la estructura de 'params.yaml'. Falta la clave: {e}")
+# ----------------- FIN DE CARGA DE PARÁMETROS --------------------------
 
 # ---------- CARGA Y PREPROCESAMIENTO DE DATOS ----------
 data_path = PROJECT_ROOT / "data" / "processed" / "telco_churn_ok.csv"
@@ -141,13 +158,13 @@ with mlflow.start_run(run_name="Comparativa_Modelos") as parent_run:
             return metrics
 
     # 1) RandomForest
-    rf_params = {"n_estimators": 200, "max_depth": 10, "random_state": 42}
+    # rf_params = {"n_estimators": 200, "max_depth": 10, "random_state": 42}
     train_evaluate_log("RandomForest", 
                        model_obj=__import__("sklearn.ensemble").ensemble.RandomForestClassifier(**rf_params),
                        params=rf_params)
 
     # 2) LogisticRegression
-    lr_params = {"C": 1.0, "max_iter": 500, "solver": "lbfgs"}
+    # lr_params = {"C": 1.0, "max_iter": 500, "solver": "lbfgs"}
     train_evaluate_log("LogisticRegression", 
                        model_obj=__import__("sklearn.linear_model").linear_model.LogisticRegression(**lr_params),
                        params=lr_params)
