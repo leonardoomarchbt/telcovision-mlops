@@ -6,9 +6,10 @@
 train:
   # Parámetros para el modelo de Regresión Logística
   lr_params:
-    C: 1.0           # Hiperparámetro de regularización
+    C: 0.1           # Hiperparámetro de regularización
     max_iter: 200 # 100    # Número de iteraciones
     solver: 'lbfgs'  # (Añadido: Asumiendo un solver común)
+    class_weight: 'balanced'  # <--- ¡NUEVO PARÁMETRO CLAVE!
   
   # Parámetros para el modelo de Random Forest (basado en tus scripts anteriores)
   rf_params:
