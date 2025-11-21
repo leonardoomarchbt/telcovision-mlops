@@ -16,3 +16,42 @@ stages:
       hash: md5
       md5: 45802665c53098c39dc14d840bbeabc1
       size: 843399
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/telco_churn_ok.csv
+      hash: md5
+      md5: 45802665c53098c39dc14d840bbeabc1
+      size: 843399
+    - path: params.yaml
+      hash: md5
+      md5: cddbda5f7e064de0809582026c98bee0
+      size: 1048
+    - path: src/train.py
+      hash: md5
+      md5: b2cf8b1e043fa2ebd17d42836c5eb9f8
+      size: 7703
+    params:
+      params.yaml:
+        train:
+          lr_params:
+            C: 1.0
+            max_iter: 200
+            solver: lbfgs
+          rf_params:
+            n_estimators: 100
+            max_depth: 5
+            random_state: 42
+    outs:
+    - path: models/LogisticRegression_pipeline.pkl
+      hash: md5
+      md5: 78cb9ef5987cf3db9a42479850905843
+      size: 163379
+    - path: models/RandomForest_pipeline.pkl
+      hash: md5
+      md5: 653f5daede2116ac08c4e49dd603de38
+      size: 254277
+    - path: models/metrics.json
+      hash: md5
+      md5: ca046756726890e5a241e8b184e80d8a
+      size: 303
