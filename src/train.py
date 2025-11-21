@@ -168,5 +168,24 @@ with mlflow.start_run(run_name="Comparativa_Modelos") as parent_run:
     train_evaluate_log("LogisticRegression", 
                        model_obj=__import__("sklearn.linear_model").linear_model.LogisticRegression(**lr_params),
                        params=lr_params)
+					   
+	# --- NUEVA LÓGICA: GUARDADO DE MÉTRICAS PARA DVC ---
+    import json # Usamos json para serializar
+
+    # 1. Recolectar las métricas de ambos modelos
+    final_metrics = {
+        "RandomForest": rf_metrics,
+        "LogisticRegression": lr_metrics,
+        # Opcional: Determinar el mejor modelo basado en ROC AUC
+        "Best_Model": "RandomForest" if rf_metrics.get("roc_auc", 0) > lr_metrics.get("roc_auc", 0) else "LogisticRegression"
+    }
+
+    metrics_path = PROJECT_ROOT / "models" / "metrics.json"
+
+    # 2. Asegurar la carpeta y guardar el archivo JSON
+    metrics_path.parent.mkdir(exist_ok=True, parents=True)
+    with open(metrics_path, "w") as f:
+        json.dump(final_metrics, f, indent=4)
+    # ---------------------------------------------------
 
 print("[OK] Ejecución finalizada. Revisa la UI de MLflow.")
