@@ -25,8 +25,8 @@ stages:
       size: 843399
     - path: params.yaml
       hash: md5
-      md5: b9129ff8c064b054f6c89f23a07bf2cf
-      size: 1037
+      md5: b80b4c5bc5c38af718d80269394633cb
+      size: 1019
     - path: src/train.py
       hash: md5
       md5: b2cf8b1e043fa2ebd17d42836c5eb9f8
@@ -39,8 +39,8 @@ stages:
             max_iter: 200
             solver: lbfgs
           rf_params:
-            n_estimators: 100
-            max_depth: 5
+            n_estimators: 200
+            max_depth: 10
             random_state: 42
     outs:
     - path: models/LogisticRegression_pipeline.pkl
@@ -49,9 +49,9 @@ stages:
       size: 163379
     - path: models/RandomForest_pipeline.pkl
       hash: md5
-      md5: 653f5daede2116ac08c4e49dd603de38
-      size: 254277
+      md5: 1eabdae1191673f05e1fc4d5a9b37373
+      size: 812376
     - path: models/metrics.json
       hash: md5
-      md5: ca046756726890e5a241e8b184e80d8a
-      size: 303
+      md5: 1d631501d469c51c8535771da7916e32
+      size: 297
