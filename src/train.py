@@ -42,7 +42,7 @@ params_path = PROJECT_ROOT / "params.yaml"
 if not params_path.exists():
     raise FileNotFoundError(f"No se encontró {params_path}. Asegúrate de crear el archivo.")
 
-with open(params_path, 'r') as f:
+with open(params_path, 'r', encoding='utf-8') as f:
     config = yaml.safe_load(f)
 
 # Extraer parámetros de entrenamiento y general settings
