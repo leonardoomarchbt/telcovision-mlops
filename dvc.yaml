@@ -9,5 +9,17 @@ stages:
     - data/raw/telco_churn.csv
     outs:
     - data/processed/telco_churn_ok.csv
+  
   # ETAPA 2: Entrenamiento del Modelo
-  # Esta etapa dependerá de las salidas de la etapa 'prepare'
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py  # Dependencia del código de entrenamiento
+    - data/processed/telco_churn_ok.csv # Dependencia de la salida de la etapa 'prepare'
+    - params.yaml # <--- ¡CLAVE! DVC detectará los cambios en este archivo
+    params:
+    - train # DVC rastreará los parámetros de la sección 'train' de params.yaml
+    outs:
+    - models/RandomForest_pipeline.pkl
+    - models/LogisticRegression_pipeline.pkl
+    - models/metrics.json
