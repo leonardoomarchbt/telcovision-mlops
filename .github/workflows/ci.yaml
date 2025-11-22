@@ -41,9 +41,9 @@ jobs:
         run: |
           # Modificamos la configuración local de DVC para usar los secrets
           # Asumimos que tu remote se llama 'dagshub' (el default). Si es 'origin', cambia abajo.
-          dvc remote modify --local auth basic
-          dvc remote modify --local user ${{ secrets.DAGSHUB_USER }}
-          dvc remote modify --local password ${{ secrets.DAGSHUB_TOKEN }}
+          dvc remote modify --local origin auth basic
+          dvc remote modify --local origin user ${{ secrets.DAGSHUB_USER }}
+          dvc remote modify --local origin password ${{ secrets.DAGSHUB_TOKEN }}
 
       # 5. Descargar datos y modelos actuales (DVC Pull)
       - name: DVC Pull (Descargar datos)
