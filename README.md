@@ -62,10 +62,15 @@ que obtuvo las siguientes metricas:
 
 ## 5) CI/CD con GitHub Actions
 Se configuro ci.yaml
+
 se instalaron dependencias
+
 dvc pull
+
 dvc repro
+
 metricas en log
+
 
 ---
 
