@@ -46,6 +46,32 @@ Abrir y ejecutar train.py para entrenar modelo
 
 ---
 
+## 4) Experimentos
+modificando hiperparametros (en params.yaml) durante 4 corridas suscesivas, se determino que los mejores valores fueron, para el modelo de regresion:
+  lr_params:
+    C: 0.1 
+    max_iter: 200 
+    class_weight: 'balanced'  
+
+que obtuvo las siguientes metricas:
+	accuracy = 0.6585
+	roc_auc = 0.7265
+	f1 = 0.5994
+	
+---
+
+## 5) CI/CD 
+
+
+---
+
+
+
+
+
+
+---
+
 
 
 
