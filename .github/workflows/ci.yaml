@@ -1,0 +1,64 @@
+name: Entrenamineto y Validación MLOps
+
+# Se activa cuando haces push a master o abres un Pull Request
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    
+    # Variables de entorno globales para este job (MLflow las lee automáticamente)
+    env:
+      MLFLOW_TRACKING_URI: https://dagshub.com/leonardo.quiroga/telcovision-mlops.mlflow
+      MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_USER }}
+      MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
+
+    steps:
+      # 1. Descargar tu código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Instalar Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Aseguramos tener dvc y dagshub instalados
+          pip install dvc dagshub
+
+      # 4. Configurar credenciales de DVC (Para poder hacer pull/push al storage)
+      - name: Configure DagsHub DVC Credentials
+        run: |
+          # Modificamos la configuración local de DVC para usar los secrets
+          # Asumimos que tu remote se llama 'dagshub' (el default). Si es 'origin', cambia abajo.
+          dvc remote modify --local auth basic
+          dvc remote modify --local user ${{ secrets.DAGSHUB_USER }}
+          dvc remote modify --local password ${{ secrets.DAGSHUB_TOKEN }}
+
+      # 5. Descargar datos y modelos actuales (DVC Pull)
+      - name: DVC Pull (Descargar datos)
+        run: dvc pull
+
+      # 6. Ejecutar el Pipeline (DVC Repro)
+      - name: Run DVC Pipeline (Entrenamiento)
+        run: dvc repro
+
+      # 7. Publicar métricas en el log de GitHub
+      - name: Show Metrics
+        run: |
+          echo "### Reporte de Métricas Automático 📊" >> $GITHUB_STEP_SUMMARY
+          echo "A continuación se muestran las métricas generadas por el CI:" >> $GITHUB_STEP_SUMMARY
+          # Muestra el contenido del JSON en el log
+          cat models/metrics.json
+          # Opcional: Si quieres verlo formateado en el resumen del workflow
+          dvc metrics show >> $GITHUB_STEP_SUMMARY
