@@ -1,0 +1,13 @@
+{
+    "RandomForest": {
+        "accuracy": 0.6675,
+        "f1": 0.4291845493562232,
+        "roc_auc": 0.7024347602464043
+    },
+    "LogisticRegression": {
+        "accuracy": 0.6585,
+        "f1": 0.5994134897360703,
+        "roc_auc": 0.7265143910506109
+    },
+    "Best_Model": "LogisticRegression"
+}

@@ -12,6 +12,7 @@ __pycache__/
 /models/*.json
 /models/*.txt
 /models/*.png
+/models/
 
 # ----------------------------------------------------
 # B. CARPETAS Y ARCHIVOS DE CACHÉ DE DVC Y GIT
