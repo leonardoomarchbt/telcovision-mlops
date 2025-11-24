@@ -47,7 +47,7 @@ jobs:
 
       # 5. Descargar datos y modelos actuales (DVC Pull)
       - name: DVC Pull (Descargar datos)
-        run: dvc pull
+        run: dvc pull --force  # <--- ¡CORRECCIÓN AQUÍ!
 
       # 6. Ejecutar el Pipeline (DVC Repro)
       - name: Run DVC Pipeline (Entrenamiento)
