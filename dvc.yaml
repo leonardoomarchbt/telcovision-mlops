@@ -23,3 +23,17 @@ stages:
     - models/RandomForest_pipeline.pkl
     - models/LogisticRegression_pipeline.pkl
     - models/metrics.json
+    
+  # ETAPA 3: Evaluación final para producción
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - src/evaluate.py
+    - models/LogisticRegression_pipeline.pkl # Depende del modelo ganador
+    metrics:
+    - models/evaluation_metrics.json
+    plots:
+    - models/roc_curve.png:
+        title: Curva ROC Final
+    outs:
+    - models/classification_report.txt

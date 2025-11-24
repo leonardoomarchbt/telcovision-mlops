@@ -53,3 +53,27 @@ stages:
       hash: md5
       md5: a74a729d635be8409d87eefbe21a7317
       size: 318
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: models/LogisticRegression_pipeline.pkl
+      hash: md5
+      md5: 2beffa5cd971b515a134f73ea9e8e8fb
+      size: 163389
+    - path: src/evaluate.py
+      hash: md5
+      md5: 2c78dd4cebc7cffa56d2ab5583a92f06
+      size: 2557
+    outs:
+    - path: models/classification_report.txt
+      hash: md5
+      md5: 01999fb8762cd07110369d3e95cd4451
+      size: 334
+    - path: models/evaluation_metrics.json
+      hash: md5
+      md5: cee51beaf948e81eaa7643af2c57d0ab
+      size: 581
+    - path: models/roc_curve.png
+      hash: md5
+      md5: 6f6bfc4f0a863dc8f3204e53c169d840
+      size: 31945
