@@ -15,7 +15,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_m
 import matplotlib.pyplot as plt
 import pickle
 import yaml
-
+# agregamos este comentario solo para prueba
 
 # ---------- CONFIGURACIÓN DE MLFLOW ----------
 # Local por defecto: file:///<proyecto>/mlruns
