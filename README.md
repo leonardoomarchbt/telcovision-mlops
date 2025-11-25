@@ -81,6 +81,12 @@ se realiza validacion automatica con CI/CD.
 
 --
 
+## 7) Produccion (bouns track)
+se implementa evaluate.py 
+se guardan artefactos en DVC
+
+--
+
 
 
 ---
