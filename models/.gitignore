@@ -1,3 +1,35 @@
 /RandomForest_pipeline.pkl
 /LogisticRegression_pipeline.pkl
 /metrics.json
+# ----------------------------------------------------
+# A. ARTEFACTOS GENERADOS POR EL PIPELINE (Outputs)
+# ----------------------------------------------------
+# Ignorar todos los archivos binarios de modelos y métricas
+/models/*.pkl
+/models/*.json
+/models/*.txt
+/models/*.png
+/models/
+
+# ----------------------------------------------------
+# B. CARPETAS Y ARCHIVOS DE CACHÉ DE DVC Y GIT
+# ----------------------------------------------------
+# Ignorar la carpeta de cache de DVC. Esta almacena los archivos reales.
+.dvc/cache/
+
+# ----------------------------------------------------
+# C. ENTORNO Y TEMPORALES
+# ----------------------------------------------------
+# Entorno Conda (mlops_env)
+# Si tu entorno está fuera del proyecto, solo ignora la carpeta temporal:
+/mlops_env/
+
+# Archivos de Python
+__pycache__/
+*.pyc
+
+# MLflow
+/mlruns/
+
+# Logs y Temporales
+*.log
