@@ -75,15 +75,21 @@ metricas en log
 
 ## 6) Iteracion colaborativa
 se crea rama feat-propuesta-final-v2.
+
 se realiza pull-requests.
+
 y merge del mejor experimento a master.
+
 se realiza validacion automatica con CI/CD.
+
 
 --
 
 ## 7) Produccion (bouns track)
 se implementa evaluate.py 
+
 se guardan artefactos en DVC
+
 
 --
 
