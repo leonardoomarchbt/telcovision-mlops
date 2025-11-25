@@ -45,14 +45,6 @@ stages:
       hash: md5
       md5: 2beffa5cd971b515a134f73ea9e8e8fb
       size: 163389
-    - path: models/RandomForest_pipeline.pkl
-      hash: md5
-      md5: dd885d941ea6e034de02e889c5a5b0cc
-      size: 53583656
-    - path: models/metrics.json
-      hash: md5
-      md5: f9d0b5088925002bf96142f492abef61
-      size: 318
   evaluate:
     cmd: python src/evaluate.py
     deps:
