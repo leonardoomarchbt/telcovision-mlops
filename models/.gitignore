@@ -10,6 +10,7 @@
 /models/*.txt
 /models/*.png
 /models/
+models/
 
 # ----------------------------------------------------
 # B. CARPETAS Y ARCHIVOS DE CACHÉ DE DVC Y GIT
@@ -33,3 +34,9 @@ __pycache__/
 
 # Logs y Temporales
 *.log
+
+.env
+.dvc/tmp
+.venv
+__pycache__/
+.ipynb_checkpoints/
