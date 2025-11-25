@@ -20,9 +20,9 @@ stages:
     params:
     - train # DVC rastreará los parámetros de la sección 'train' de params.yaml
     outs:
-    - models/RandomForest_pipeline.pkl
+    #- models/RandomForest_pipeline.pkl
     - models/LogisticRegression_pipeline.pkl
-    - models/metrics.json
+    #- models/metrics.json
     
   # ETAPA 3: Evaluación final para producción
   evaluate:
