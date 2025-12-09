@@ -9,7 +9,7 @@
 Construir, versionar y publicar un proyecto completo de Machine Learning, registrando y comparando experimentos.
 
 
-## Link a video en youtube => https://www.youtube.com/watch?v=7XgGwR2RWuc
+### Link a video en youtube => https://www.youtube.com/watch?v=7XgGwR2RWuc
 
 ---
 
