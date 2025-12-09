@@ -8,6 +8,9 @@
 ## Objetivo
 Construir, versionar y publicar un proyecto completo de Machine Learning, registrando y comparando experimentos.
 
+
+Link a video en youtube => https://www.youtube.com/watch?v=7XgGwR2RWuc
+
 ---
 
 ## Requisitos previos
@@ -23,15 +26,23 @@ Construir, versionar y publicar un proyecto completo de Machine Learning, regist
 ## 1) Estructura del proyecto
 ```
 tecnovision-mlops/
-				 ├── .github/workflows
+				 ├── .github/workflows/
+				 │                    └── ci.yaml
 				 ├── data/raw/
 				 │           └── telco_churn.csv
 				 ├── models/
 				 ├── src/
-				 ├── requirements.txt
+				 │      ├── data_prep.py
+				 │      ├── evaluate.py
+				 │      └── train.py     
 				 ├── .gitignore
+				 ├── .dvcignore
+				 ├── DEPLOYMENT.md
+				 ├── README.md
+				 ├── dvc.lock
+				 ├── dvc.yaml
 				 ├── params.yaml
-				 └── README.md
+				 └── requirements.txt
 ```
 
 ---
